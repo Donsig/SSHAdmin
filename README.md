@@ -14,3 +14,11 @@ To Do
 - Improve the design.
 - Add more default commands.
 - Add the possibility to edit servers and commands.
+
+
+
+
+Background
+==========
+
+This project was a part of my education at UCN Aalborg, where I had to develop an application by myself during a course of several weeks. Note that this project is my first experience with Objective C, and thus this should not be used for anything without major improvements first.
