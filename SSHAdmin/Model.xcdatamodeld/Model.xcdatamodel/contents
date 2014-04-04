@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Command" syncable="YES">
+        <attribute name="commandExpectedOutput" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commandInput" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="executeAsSudo" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="requiredOS" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="serverId" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ServerData" inverseName="command" inverseEntity="ServerData" syncable="YES"/>
+    </entity>
+    <entity name="ServerData" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="serverAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serverName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serverOS" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serverPort" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userPassword" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="command" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Command" inverseName="serverId" inverseEntity="Command" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ServerData" positionX="-4743" positionY="-1503" width="128" height="163"/>
+        <element name="Command" positionX="-4527" positionY="-1494" width="128" height="133"/>
+    </elements>
+</model>
