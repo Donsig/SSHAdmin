@@ -24,6 +24,14 @@
     
     NMSSHSession *session = [NMSSHSession connectToHost:self.server.serverAddress
                                            withUsername:self.server.userName];
+    NSString *cmdString = self.input;
+    
+    if ([cmdString hasPrefix:@"sudo"])
+    {
+        cmdString = [NSString stringWithFormat:@"echo %@ | sudo -S %@", self.server.userPassword,[cmdString stringByReplacingOccurrencesOfString:@"sudo" withString:@""]]; //This will allow for the user to execute commands as sudo.
+    
+    }
+    
     NSString *response = @"An error has occurred. Please try again."; //If for some reason the response can't be read, this will be returned.
     if (session.isConnected) {
         @try
@@ -38,7 +46,7 @@
                 #warning WILL raise a Thread SIGABRT if used a few times.
                 if([session.channel startShell:&error]) //Assertion failed: (remainbuf >= 0), function _libssh2_transport_read, file transport.c, line 345.
                 {
-                    response = [session.channel execute:self.input error:&error];
+                    response = [session.channel execute:cmdString error:&error];
                     NSLog(@"Executing command. %@", response);
                 
                     
