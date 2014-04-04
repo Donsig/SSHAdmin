@@ -24,9 +24,6 @@
         //_tableContents = @[@"Hello", @"iOS7", @"Table", @"View", @"Example"];
         _tableContents = [[NSMutableArray alloc]init];
         
-        //Add standard server. (Currently the test server.)
-        Server *serv =[[Server alloc]init];
-
     }
     
     return _tableContents;

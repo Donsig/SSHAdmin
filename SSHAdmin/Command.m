@@ -28,10 +28,12 @@
     
     if ([cmdString hasPrefix:@"sudo"])
     {
-        cmdString = [NSString stringWithFormat:@"echo %@ | sudo -S %@", self.server.userPassword,[cmdString stringByReplacingOccurrencesOfString:@"sudo" withString:@""]]; //This will allow for the user to execute commands as sudo.
+        NSLog(@"replacing sudo");
+        cmdString = [NSString stringWithFormat:@"echo %@ | %@", self.server.userPassword,[cmdString stringByReplacingOccurrencesOfString:@"sudo" withString:@"sudo -S"]]; //This will allow the user to execute commands as sudo.
     
     }
-    
+    NSLog(@"Command is:");
+    NSLog(cmdString);
     NSString *response = @"An error has occurred. Please try again."; //If for some reason the response can't be read, this will be returned.
     if (session.isConnected) {
         @try

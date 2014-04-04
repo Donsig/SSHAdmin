@@ -32,7 +32,7 @@
         
         _commandList = [[NSMutableArray alloc]init];
         Command *cmd = [[Command alloc]init];
-        cmd.input = @"ls -al";
+        cmd.input = @"sudo apt-get update";
         cmd.expectedOutput = nil;
         cmd.server = self.serv;
         [self.commandList addObject:cmd];
