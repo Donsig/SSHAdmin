@@ -11,3 +11,6 @@ Be aware that it has only been tested on Debian 6 servers and the app has a tend
 To Do
 =====
 - Add a local database.
+- Improve the design.
+- Add more default commands.
+- Add the possibility to edit servers and commands.
