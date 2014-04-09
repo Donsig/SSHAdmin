@@ -12,8 +12,6 @@
 
 @protocol AddServerViewControllerDelegate <NSObject>
 - (void)AddServerViewControllerDidSave:(AddServerViewController *)controller
-                            withString:(NSString *)input;
-- (void)AddServerViewControllerDidSave:(AddServerViewController *)controller
                             withServer:(Server *)input;
 @end
 

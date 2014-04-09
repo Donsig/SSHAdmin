@@ -30,9 +30,6 @@ static const int DEFAULT_PORT = 22;
                Port:[_serverPortInput.text integerValue] ? [_serverPortInput.text integerValue] : DEFAULT_PORT //If nothing is specified, use default port.
            UserName:_serverUserInput.text
            Password:_serverPasswordInput.text];
-
-    //NSLog(@"About to call delegate.");
-    //[self.delegate AddServerViewControllerDidSave:self withString:@"New Item"];
     [self.delegate AddServerViewControllerDidSave:self withServer:serv];
 }
 

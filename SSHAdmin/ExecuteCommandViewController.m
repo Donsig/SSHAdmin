@@ -63,10 +63,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (void)threadTest:(Command *)cmd
-{
-    [self appendOutput:cmd.executeCommand];
-}
 
 -(void)appendOutput:(NSString *)output
 {

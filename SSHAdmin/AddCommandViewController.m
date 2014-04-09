@@ -37,10 +37,8 @@
 
 - (IBAction)saveCommandButton:(UIBarButtonItem *)sender
 {
-    NSLog(@"preparing for delegate");
     Command *cmd = [[Command alloc]init];
     [cmd addCommand:self.inputField.text ExpectedOutput:self.outputField.text];
-    NSLog(self.inputField.text);
     [self.delegate AddCommandViewControllerDidSave:self withCommand:cmd];
 }
 

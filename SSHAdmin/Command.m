@@ -20,20 +20,14 @@
 - (NSString *)executeCommand
 {
 #warning NMSSH has a bunch of errors that are not handled. Make sure to handle these!
-
-    
     NMSSHSession *session = [NMSSHSession connectToHost:self.server.serverAddress
                                            withUsername:self.server.userName];
     NSString *cmdString = self.input;
-    
     if ([cmdString hasPrefix:@"sudo"])
     {
-        NSLog(@"replacing sudo");
         cmdString = [NSString stringWithFormat:@"echo %@ | %@", self.server.userPassword,[cmdString stringByReplacingOccurrencesOfString:@"sudo" withString:@"sudo -S"]]; //This will allow the user to execute commands as sudo.
     
     }
-    NSLog(@"Command is:");
-    NSLog(cmdString);
     NSString *response = @"An error has occurred. Please try again."; //If for some reason the response can't be read, this will be returned.
     if (session.isConnected) {
         @try
@@ -41,17 +35,13 @@
             [session authenticateByPassword:self.server.userPassword];
             
             if (session.isAuthorized) {
-                
-                
                 NSLog(@"Authentication succeeded");
                 NSError *error = nil;
-                #warning WILL raise a Thread SIGABRT if used a few times.
-                if([session.channel startShell:&error]) //Assertion failed: (remainbuf >= 0), function _libssh2_transport_read, file transport.c, line 345.
+                #warning WILL raise a Thread SIGABRT or malloc error if used a few times.
+                if([session.channel startShell:&error]) 
                 {
                     response = [session.channel execute:cmdString error:&error];
                     NSLog(@"Executing command. %@", response);
-                
-                    
                 }
             }
         }
@@ -67,7 +57,7 @@
                 [session disconnect];
             }
         }
-    }
+    } 
     return response;
 }
 
@@ -76,7 +66,6 @@
     NMSSHSession *session = [NMSSHSession connectToHost:self.server.serverAddress
                                            withUsername:self.server.userName];
     NSArray *returnArr = [[NSArray alloc] init];
-    
     if (session.isConnected) {
         bool authenticated = [session authenticateByPassword:self.server.userPassword];
         
@@ -87,8 +76,6 @@
         }
         [session disconnect];
     }
-
-    
     return returnArr;
 }
 
